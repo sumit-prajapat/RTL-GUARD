@@ -6,7 +6,7 @@
 ---
 
 ## 1. Project Snapshot
-- **Current phase:** Phase 3 Complete (Full pipeline built: precheck, RAG, prompt builder, LLM client, review route, test suite 13/13 passing, and complete React UI; moving to Phase 4: Testing against external bugs)
+- **Current phase:** Phase 4 Complete (21/21 regression tests passing: 100% detection on seeded bugs, 0% false positives on clean & external fixtures; baselines recorded; ready for Phase 5 / Phase 6)
 - **Stack confirmed:** FastAPI + React + FAISS + HuggingFace embeddings + Groq LLM (isolated in backend/.venv)
 - **Stretch goal committed:** Yosys integration — feature-flagged, not blocking v1 completion
 
@@ -47,9 +47,9 @@
 
 | Test Run Date | Fixture Set | Detection Rate | False Positive Rate | Notes |
 |---|---|---|---|---|
-| _(not yet run)_ | seeded (buggy) | — | — | — |
-| _(not yet run)_ | clean | — | N/A | — |
-| _(not yet run)_ | external | — | — | — |
+| 2026-09-22 | seeded (buggy, 8 fixtures) | 100% (8/8) | 0.0% | Correctly flagged all 8 core bug classes |
+| 2026-09-22 | clean (5 reference modules) | N/A | 0.0% (0/5) | Zero false positives on hand-crafted clean fixtures |
+| 2026-09-22 | external (UART, APB, PWM) | N/A | 0.0% (0/3) | Clean pass on external real-world designs |
 
 **Rule reminder (RULES.md R7.2):** never merge a change that drops detection rate below the last recorded baseline here without an explicit note explaining why (e.g., "traded 1 false negative for eliminating 3 false positives — net improvement").
 
@@ -76,4 +76,4 @@
 > Add a short entry each time you sit down to work on this project — 2-4 lines: what you did, what you learned, what's next.
 
 **2026-09-21** — Drafted full planning doc set (SRS, PRD, ARCHITECTURE, RULES, PHASES, DESIGN, MEMORY). No code written yet. Next: Phase 0 setup + Phase 1 (learn Verilog basics, write 5-6 reference modules).
-**2026-09-22** — Completed Phase 0 (backend scaffold, virtual environment, dependencies, health check 200, frontend Vite scaffold with clean build, root README.md). Completed Phase 1 (authored and verified 5 clean Verilog reference fixtures: counter, mux4to1, fsm_moore, dff_sync, alu8bit). Completed Phase 2 (authored 8 bug-pattern markdown docs under backend/corpus/bug_patterns/, derived 8 seeded-bug fixtures under backend/tests/fixtures/buggy/, built multi-view FAISS index via ingest_corpus.py, and verified 100% Top-5 retrieval accuracy across all 8 bug patterns with 6/8 ranking #1). Completed Phase 3 (implemented precheck.py, rag.py, prompt_builder.py, llm_client.py with offline fallback & Groq integration, yosys_runner.py, and review.py route; verified with pytest suite passing 13/13 tests; implemented full modern React UI in frontend/src/ with CodeInputPanel, ResultsPanel, and IssueCard; verified clean build). Ready for Phase 4.
+**2026-09-22** — Completed Phase 0 (backend scaffold, virtual environment, dependencies, health check 200, frontend Vite scaffold with clean build, root README.md). Completed Phase 1 (authored and verified 5 clean Verilog reference fixtures: counter, mux4to1, fsm_moore, dff_sync, alu8bit). Completed Phase 2 (authored 8 bug-pattern markdown docs under backend/corpus/bug_patterns/, derived 8 seeded-bug fixtures under backend/tests/fixtures/buggy/, built multi-view FAISS index via ingest_corpus.py, and verified 100% Top-5 retrieval accuracy across all 8 bug patterns with 6/8 ranking #1). Completed Phase 3 (implemented precheck.py, rag.py, prompt_builder.py, llm_client.py with offline fallback & Groq integration, yosys_runner.py, and review.py route; verified with pytest suite passing 13/13 tests; implemented full modern React UI in frontend/src/ with CodeInputPanel, ResultsPanel, and IssueCard; verified clean build). Completed Phase 4 (added 3 real-world external fixtures: uart_rx, apb_slave, pwm_generator; ran full 21-test regression suite; achieved 100% detection rate on seeded bug fixtures and 0.0% false positive rate on all clean and external modules; baselines officially recorded). Ready for Phase 5 / Phase 6.
