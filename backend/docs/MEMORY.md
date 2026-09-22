@@ -6,7 +6,7 @@
 ---
 
 ## 1. Project Snapshot
-- **Current phase:** Phase 2 Complete (Corpus docs written, 8 seeded fixtures created, multi-view FAISS index built & 100% Top-5 retrieval verified; moving to Phase 3: Pipeline build)
+- **Current phase:** Phase 3 Complete (Full pipeline built: precheck, RAG, prompt builder, LLM client, review route, test suite 13/13 passing, and complete React UI; moving to Phase 4: Testing against external bugs)
 - **Stack confirmed:** FastAPI + React + FAISS + HuggingFace embeddings + Groq LLM (isolated in backend/.venv)
 - **Stretch goal committed:** Yosys integration — feature-flagged, not blocking v1 completion
 
@@ -76,4 +76,4 @@
 > Add a short entry each time you sit down to work on this project — 2-4 lines: what you did, what you learned, what's next.
 
 **2026-09-21** — Drafted full planning doc set (SRS, PRD, ARCHITECTURE, RULES, PHASES, DESIGN, MEMORY). No code written yet. Next: Phase 0 setup + Phase 1 (learn Verilog basics, write 5-6 reference modules).
-**2026-09-22** — Completed Phase 0 (backend scaffold, virtual environment, dependencies, health check 200, frontend Vite scaffold with clean build, root README.md). Completed Phase 1 (authored and verified 5 clean Verilog reference fixtures: counter, mux4to1, fsm_moore, dff_sync, alu8bit). Completed Phase 2 (authored 8 bug-pattern markdown docs under backend/corpus/bug_patterns/, derived 8 seeded-bug fixtures under backend/tests/fixtures/buggy/, built multi-view FAISS index via ingest_corpus.py, and verified 100% Top-5 retrieval accuracy across all 8 bug patterns with 6/8 ranking #1). Ready for Phase 3.
+**2026-09-22** — Completed Phase 0 (backend scaffold, virtual environment, dependencies, health check 200, frontend Vite scaffold with clean build, root README.md). Completed Phase 1 (authored and verified 5 clean Verilog reference fixtures: counter, mux4to1, fsm_moore, dff_sync, alu8bit). Completed Phase 2 (authored 8 bug-pattern markdown docs under backend/corpus/bug_patterns/, derived 8 seeded-bug fixtures under backend/tests/fixtures/buggy/, built multi-view FAISS index via ingest_corpus.py, and verified 100% Top-5 retrieval accuracy across all 8 bug patterns with 6/8 ranking #1). Completed Phase 3 (implemented precheck.py, rag.py, prompt_builder.py, llm_client.py with offline fallback & Groq integration, yosys_runner.py, and review.py route; verified with pytest suite passing 13/13 tests; implemented full modern React UI in frontend/src/ with CodeInputPanel, ResultsPanel, and IssueCard; verified clean build). Ready for Phase 4.

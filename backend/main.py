@@ -1,4 +1,9 @@
 import os
+
+# Limit OpenBLAS/OMP thread contention on Windows
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+os.environ["OMP_NUM_THREADS"] = "1"
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
@@ -19,6 +24,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+from routes.review import router as review_router
+
+# Include review routes
+app.include_router(review_router)
 
 
 @app.get("/api/health")
